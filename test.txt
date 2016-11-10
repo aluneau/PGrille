@@ -1,0 +1,6 @@
+commande git :
+    - clone : git clone 'fichier'
+    - pull : git pull
+    - commit : git commit -m "texte"
+    - add : git add nom_fichier (ou . pour inclure tout les fichiers)
+    - push : git push
