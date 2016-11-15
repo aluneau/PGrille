@@ -1,7 +1,7 @@
 var grille = function(dim, size, density){
     this.dim = dim;
     this.size = size;
-    this.denity = density;
+    this.density = density;
     this.tab = [];
     this.Create();
 }
@@ -30,33 +30,8 @@ grille.prototype.Create = function(){
     }
 }
 
-grille.prototype.RecupObj = function(...data){
-    switch (data.length) {
-        case 1:
-            return this.tab[data[0]];
-            break;
-        case 2:
-            return this.tab[data[0]][data[1]];
-            break;
-        case 3:
-            return this.tab[data[0]][data[1]][data[2]];
-            break;
-        case 4:
-            return this.tab[data[0]][data[1]][data[2]][data[3]];
-            break;
-        case 5:
-        break;
-            return this.tab[data[0]][data[1]][data[2]][data[3]][data[4]];
-            break;
-        case 6:
-            return this.tab[data[0]][data[1]][data[2]][data[3]][data[4]][data[5]];
-            break;
-        default:
-
-    }
-}
-
-grille.prototype.setval = function(...data){
+grille.prototype.setval = function(data){
+    console.log(data);
     var val = data[data.length -1];
     data.pop();
     console.log(data);
@@ -66,7 +41,7 @@ grille.prototype.setval = function(...data){
 }
 
 
-grille.prototype.ReturnObj = function(...data){
+grille.prototype.ReturnObj = function(data){
     var temp1 = this.tab;
     var temp2 = [];
     for(var i = 0; i < data.length; i++){

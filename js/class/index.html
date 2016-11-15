@@ -10,19 +10,17 @@
     <body>
         <p>Classe Grille</P>
             <script>
-            var g = new grille(4, 10, 50);
-            var temp1 = g.RecupObj(0,0,0,0);
+            var g = new grille(8, 10, 50);
+            var position = [0, 0, 0, 0, 0, 0, 0, 0];
+            var temp1 = g.ReturnObj(position);
             //temp1.val = 5;
-            g.setval(0, 0, 0, 0, 5);
             //console.log(temp1);
-            console.log(g.tab[0][0][0][0]);
+            var new_val = 5;
+            position.push(new_val);
+            g.setval(position);
+            console.log(position);
+            console.log(g.ReturnObj(position));
 
-            argument = function(...arg){
-                console.log(arg.length);
-                for(i = 0; i< arg.length; i++){
-                    console.log(arg[i]);
-                }
-            }
 
             //argument(8, 0, 1, 2, 1  );
             </script>
