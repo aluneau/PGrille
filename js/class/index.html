@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Classe grille</title>
+
+        <script type='text/javascript' src='Grille.js'></script>
+    </head>
+
+    <body>
+        <p>Classe Grille</P>
+            <script>
+            var g = new grille(4, 10, 50);
+            var temp1 = g.RecupObj(0,0,0,0);
+            //temp1.val = 5;
+            g.setval(0, 0, 0, 0, 5);
+            //console.log(temp1);
+            console.log(g.tab[0][0][0][0]);
+
+            argument = function(...arg){
+                console.log(arg.length);
+                for(i = 0; i< arg.length; i++){
+                    console.log(arg[i]);
+                }
+            }
+
+            //argument(8, 0, 1, 2, 1  );
+            </script>
+    </body>
+</html>
