@@ -10,16 +10,29 @@
     <body>
         <p>Classe Grille</P>
             <script>
-            var g = new grille(8, 10, 50);
-            var position = [0, 0, 0, 0, 0, 0, 0, 0];
+            var g = new grille(2, 5, 50);
+
+            var position = [1, 1];
             var temp1 = g.ReturnObj(position);
-            //temp1.val = 5;
             //console.log(temp1);
-            var new_val = 5;
-            position.push(new_val);
-            g.setval(position);
-            console.log(position);
-            console.log(g.ReturnObj(position));
+            var voisin = g.getNeighbourhood(position);
+            console.log(g.tab);
+            for(var i =0; i < voisin.length; i++){
+                voisin[i].val = 5;
+            }
+            //console.log(voisin);
+            //console.log(g.tab[]);
+            for(var i = 0; i < g.size; i ++){
+                //for(var j = 0; j < g.size; j ++){
+                    console.log(g.tab[i][0].val, "|",g.tab[i][1].val, "|",g.tab[i][2].val, "|",g.tab[i][3].val, "|",g.tab[i][4].val, "|");
+                //}
+            }
+            //temp1.val = 5;
+            //var new_val = 5;
+            //position.push(new_val);
+            //g.setval(position);
+            //console.log(position);
+            //console.log(g.ReturnObj(position));
 
 
             //argument(8, 0, 1, 2, 1  );

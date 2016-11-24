@@ -37,7 +37,34 @@ grille.prototype.setval = function(data){
     console.log(data);
     var temp = this.ReturnObj(data);
     temp.val = val;
+}
 
+grille.prototype.getNeighbourhood = function(data){
+    var TempTab = []    ;
+    if(data[0] - 1 >= 0){
+        TempTab.push(this.tab[data[0]-1]);
+    }
+    TempTab.push(this.tab[data[0]]);
+    if(data[0] + 1 < this.size){
+        TempTab.push(this.tab[data[0]+1]);
+    }
+    //k = dimension
+    for(var compteur=1; compteur < data.length; compteur++ ){
+        var TempTab2 = [];
+        for(var j = 0; j < TempTab.length; j++){
+            if(data[compteur] - 1 >= 0){
+                TempTab2.push(TempTab[j][data[compteur]-1]);
+            }
+
+            TempTab2.push(TempTab[j][data[compteur]]);
+            if(data[compteur] + 1 < this.size){
+                TempTab2.push(TempTab[j][data[compteur]+1]);
+            }
+        }
+        TempTab = TempTab2;
+        //console.log(TempTab);
+    }
+    return TempTab;
 }
 
 
