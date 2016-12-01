@@ -84,7 +84,7 @@ grille.prototype.percolateProp = function(){
 }
 
 grille.prototype.PercoDiagRec = function(arbre = 0){
-    if(arbre == 0){
+    if(arbre ==0){
         var arbre = this.tree[(Math.floor(Math.random()*this.tree.length))];
     }
     arbre.visite = 1;

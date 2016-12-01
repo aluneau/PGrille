@@ -10,14 +10,15 @@
     <body>
         <p>Classe Grille</P>
             <script>
-            var g = new grille(5, 50);
+            analyse(10);
+            //var g = new grille(5, 50);
 
             //var temp1 = g.ReturnObj(0, 0);
             //var voisin = g.getNeighbourhood(2, 4);
             /*for(var j =0; j < voisin.length; j++){
                 voisin[j].val = 5;
             }*/
-            for(var i = 0; i < g.size; i++){
+            /*for(var i = 0; i < g.size; i++){
 
                 console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
                 console.log("______________________");
@@ -27,6 +28,30 @@
             for(var i = 0; i < g.size; i++){
                 console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
                 console.log("______________________");
+            }*/
+
+            function analyse(taille, nb_essai = 10){
+                var x = [];
+                var y = [];
+                for(var density = 1; density <=100; density++){
+                    y.push(0);
+                    x.push(density);
+                    for(var essai = 0; essai < nb_essai; essai ++){
+                        var g = new grille(taille, density);
+                        g.PercoDiagRec();
+                        for(var tree = 0; tree < g.tree.length; tree++){
+                            if(g.tree[tree].val == 2){
+                                y[density]++;
+                            }
+                        }
+                    }
+                    y[density] = y[density]/(nb_essai * taille*taille*density);
+                }
+                for(var i = 0; i < x.length; i++){
+                        console.log("density : ", x[i], "pourcentage : ", y[î], "%");
+
+                }
+
             }
             </script>
     </body>
