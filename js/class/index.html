@@ -12,14 +12,21 @@
             <script>
             var g = new grille(5, 50);
 
-            var temp1 = g.ReturnObj(0, 0);
-            var voisin = g.getNeighbourhood(2, 4);
-            for(var j =0; j < voisin.length; j++){
+            //var temp1 = g.ReturnObj(0, 0);
+            //var voisin = g.getNeighbourhood(2, 4);
+            /*for(var j =0; j < voisin.length; j++){
                 voisin[j].val = 5;
+            }*/
+            for(var i = 0; i < g.size; i++){
+
+                console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
+                console.log("______________________");
             }
-            console.log(voisin.length);
+            g.PercoDiagRec();
+            console.log("\n\n");
             for(var i = 0; i < g.size; i++){
                 console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
+                console.log("______________________");
             }
             </script>
     </body>
