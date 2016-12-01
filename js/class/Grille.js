@@ -96,6 +96,7 @@ grille.prototype.percolateProp = function(){
             cible.push(this.tab[i+1][j+1]);
         }
     }
+    return stepPrint;
 }
 
 grille.prototype.PercoDiagRec = function(arbre = 0){
