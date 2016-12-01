@@ -1,4 +1,4 @@
-// Test Algorithme percolation 
+// Test Algorithme percolation
 
 // Version propagation NB: plus tard, utiliser une proba de bruler ou non.
 function percolateProp(grille, size){
@@ -13,6 +13,7 @@ function percolateProp(grille, size){
     }
     // TODO : make a rand on the liste
     var cible = [];
+    var step = [];
     // Le tableau qui contient l'arbre ciblé, auquel on ajoutera ses voisins
     cible.push(array[i]);
     while(cible.length > 0){
@@ -36,7 +37,7 @@ function percolateProp(grille, size){
     }
 }
 
-// Version café 
+// Version café
 function percolateCaf(grille, size){
     var n = size
     var array = [];

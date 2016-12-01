@@ -58,16 +58,17 @@ grille.prototype.percolateProp = function(){
     var rand = Math.floor(Math.random() * array.length);
     cible.push(array[rand]);
     console.log(array);
+    var stepPrint = [];
     while(cible.length > 0){
         var i = cible[(cible.length-1)].x;  // On stocke les coordonnées.
         var j = cible[(cible.length-1)].y;
         cible.pop();                // On supprime de la liste.
         this.tab[i][j].visite = 1; // a été visité
         this.tab[i][j].val= 2; // a été brulé;
+        stepPrint.push(this.tab);
 
-
-        //var voisin = this.getNeighbourhood(i, j);
         // On ajoute les voisins vide à notre liste.
+        //Les voisins directs
         if(i>0 && this.tab[i-1][j].exist == 1 && this.tab[i-1][j].visite == 0){
             cible.push(this.tab[i-1][j]);
         }
@@ -79,6 +80,20 @@ grille.prototype.percolateProp = function(){
         }
         if(j < this.size-1 && this.tab[i][j+1].exist == 1 && this.tab[i][j+1].visite == 0){
             cible.push(this.tab[i][j+1]);
+        }
+
+        //Les voisins diagonaux
+        if(i>0 && j>0 && this.tab[i-1][j-1].exist == 1 && this.tab[i-1][j-1].visite == 0){
+            cible.push(this.tab[i-1][j-1]);
+        }
+        if(i>0 && j<this.size-1 && this.tab[i-1][j+1].exist == 1 && this.tab[i-1][j+1].visite == 0){
+            cible.push(this.tab[i-1][j+1]);
+        }
+        if(j > 0 && i<this.size-1 && this.tab[i+1][j-1].exist == 1 && this.tab[i+1][j-1].visite == 0){
+            cible.push(this.tab[i+1][j-1]);
+        }
+        if(j < this.size-1 && i<this.size-1 && this.tab[i+1][j+1].exist == 1 && this.tab[i+1][j+1].visite == 0){
+            cible.push(this.tab[i+1][j+1]);
         }
     }
 }
