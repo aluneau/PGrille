@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'daddy_in_space_demoregular';
+    src: url('daddyinspacedemo-webfont.woff2') format('woff2'),
+         url('daddyinspacedemo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+}
+.titre {
+  text-align: center;
+}
+.titre h1{
+  font-size: 90px !important;
+  font-family: daddy_in_space_demoregular;
+}
