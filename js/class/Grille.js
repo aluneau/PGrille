@@ -3,6 +3,7 @@ var grille = function(size, density){
     this.density = density;
     this.tab = [];
     this.tree = [];
+    this.tree_burn = [];
     this.Create();
 }
 
@@ -99,16 +100,25 @@ grille.prototype.percolateProp = function(){
     return stepPrint;
 }
 
-grille.prototype.PercoDiagRec = function(arbre = 0){
-    if(arbre ==0){
-        var arbre = this.tree[(Math.floor(Math.random()*this.tree.length))];
+grille.prototype.PercoDiagRec = function(arbre = null){
+    if(!arbre){
+        var x = (Math.floor(Math.random()*this.size));
+        var y = (Math.floor(Math.random()*this.size));
+        var arbre = this.tab[x][y];
     }
-    arbre.visite = 1;
-    arbre.val = 2;
-    var voisin = this.getNeighbourhood(arbre.x, arbre.y);
-    for(var i = 0; i < voisin.length; i++){
-        if(voisin[i].visite == 0){
-            this.PercoDiagRec(voisin[i]);
+    if(!arbre){
+        console.log("do nothing");
+    }else{
+        if(arbre.exist){
+            arbre.visite = 1;
+            arbre.val = 2;
+            this.tree_burn.push(arbre);
+        }
+        var voisin = this.getNeighbourhood(arbre.x, arbre.y);
+        for(var i = 0; i < voisin.length; i++){
+            if(voisin[i].visite == 0){
+                this.PercoDiagRec(voisin[i]);
+            }
         }
     }
 }
