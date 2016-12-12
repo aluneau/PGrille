@@ -5,13 +5,13 @@ Tree = function(sizeBranch, sizeTrunk, radius, scene, state, sd) {
     this._init(sizeBranch);
 
 
-    if(state == 0){
+    if(state == 1){
       var branchColor = randomColor({hue: 'green', luminosity: 'darl', format: 'rgbArray'});
       var trunkColor = randomColor({hue: 'orange',luminosity: 'dark', format: 'rgbArray'});
-    }else if(state == 1){
+    }else if(state == 2){
       var branchColor = "#ffffff";// randomColor({hue: 'black', luminosity: 'dark', format: 'rgbArray'});
       var trunkColor = "#ffffff";//randomColor({hue: 'black',luminosity: 'dark', format: 'rgbArray'});
-    }else if(state == 2){
+    }else if(state == 0){
       var branchColor = randomColor({hue: 'red', luminosity: 'dark', format: 'rgbArray'});
       var trunkColor = randomColor({hue: 'red',luminosity: 'dark', format: 'rgbArray'});
     }

@@ -1,9 +1,13 @@
+var g = new grille(20, 50);
+
 // The babylon engine
 var engine;
 // The current scene
 var scene;
 // The HTML canvas
 var canvas;
+
+
 
 // The function onload is loaded when the DOM has been loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -85,7 +89,7 @@ var initScene = function() {
     ground.receiveShadows = true;
 
 
-    var tg = new TreeGenerator(scene, shadowGenerator);
+    var tg = new TreeGenerator(scene, shadowGenerator, g);
     initGui(tg);
 };
 
@@ -98,4 +102,8 @@ var initGui = function(tg) {
     gui.add(tg, 'treeNumber', 1, 200).name("Number of trees").step(1).onChange(function(){
         tg.generate();
     });
+    setInterval(function(){
+      tg.step++;
+      tg.generate();
+    }, 2000);
 };
