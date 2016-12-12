@@ -5,28 +5,57 @@
         <title>Classe grille</title>
 
         <script type='text/javascript' src='Grille.js'></script>
+        <script type='text/javascript' src='lib/plotly-latest.min.js'></script>
+
     </head>
 
     <body>
         <p>Classe Grille</P>
+            <div id="affichage" style="width:600px;height:450px;"></div>
+
             <script>
-            var g = new grille(5, 50);
+            //var grille = new grille(5, 100);
+            //afficher_foret(grille);
+            //grille.PercoDiagRec();
+            //console.log("####################################");
+            //afficher_foret(grille);
 
-            //var temp1 = g.ReturnObj(0, 0);
-            //var voisin = g.getNeighbourhood(2, 4);
-            /*for(var j =0; j < voisin.length; j++){
-                voisin[j].val = 5;
-            }*/
-            for(var i = 0; i < g.size; i++){
+            analyse(50, 100);
 
-                console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
-                console.log("______________________");
+            function analyse(taille, nb_essai = 10){
+                var x = [];
+                var y = [];
+                for(var density = 0; density <=100; density++){
+                    y.push(0);
+                    x.push(density);
+                    if((density >  20)&&(density <60)){
+                        nb_essai = 5000;
+                    }else{
+                        nb_essai = 100;
+                    }
+                    for(var essai = 0; essai < nb_essai; essai ++){
+                        var g = new grille(taille, density);
+                        g.PercoDiagRec();
+                        y[density] += g.tree_burn.length/g.tree.length;
+                    }
+                    y[density] = y[density]/(nb_essai)*100;
+                }
+                var graph = {
+                    x : x,
+                    y, y,
+                    mode : 'lines'
+                }
+
+                var affichage = [graph];
+                Plotly.newPlot('affichage', affichage);
             }
-            g.PercoDiagRec();
-            console.log("\n\n");
-            for(var i = 0; i < g.size; i++){
-                console.log(g.tab[i][0].val, " | ",g.tab[i][1].val, " | ",g.tab[i][2].val, " | ",g.tab[i][3].val, " | ",g.tab[i][4].val);
-                console.log("______________________");
+
+            function afficher_foret(grille){
+                for(var i = 0; i < grille.size; i++){
+
+                    console.log(grille.tab[i][0].val, ' | ',grille.tab[i][1].val, ' | ',grille.tab[i][2].val, ' | ',grille.tab[i][3].val, ' | ',grille.tab[i][4].val);
+                    console.log('_______________________________');
+                }
             }
             </script>
     </body>
