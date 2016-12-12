@@ -57,8 +57,8 @@ grille.prototype.percolateProp = function(){
     // Le tableau qui contient l'arbre ciblé, auquel on ajoutera ses voisins
     var rand = Math.floor(Math.random() * array.length);
     cible.push(array[rand]);
-    console.log(array);
     var stepPrint = [];
+    stepPrint.push(this.tab);
     while(cible.length > 0){
         var i = cible[(cible.length-1)].x;  // On stocke les coordonnées.
         var j = cible[(cible.length-1)].y;
@@ -66,7 +66,7 @@ grille.prototype.percolateProp = function(){
         this.tab[i][j].visite = 1; // a été visité
         this.tab[i][j].val= 2; // a été brulé;
         stepPrint.push(this.tab);
-
+        
         // On ajoute les voisins vide à notre liste.
         //Les voisins directs
         if(i>0 && this.tab[i-1][j].exist == 1 && this.tab[i-1][j].visite == 0){
