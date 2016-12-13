@@ -7,7 +7,7 @@ var grille = function(size, density){
     this.Create();
 }
 
-grille.prototype.constructor =   grille;
+grille.prototype.constructor = grille;
 
 grille.prototype.Create = function(){
 
@@ -63,12 +63,12 @@ grille.prototype.percolateProp = function(){
 
   //Stockage initial
   var stepPrint = [];
-  // for(var x = 0; x < this.size; x++){
-  //
-  //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
-  //     console.log('_______________________________');
-  // }
-  // console.log('ok1');
+  for(var x = 0; x < this.size; x++){
+
+      console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+      console.log('_______________________________');
+  }
+  console.log('ok1');
   stepPrint.push(this.tab);
 
   while(burnTree.length > 0){
@@ -78,14 +78,14 @@ grille.prototype.percolateProp = function(){
     burnTree.pop();
     this.tab[i][j].visite = 1;
     this.tab[i][j].val = 2;
-    // //On stocke la grille
-    // for(var x = 0; x < this.size; x++){
-    //
-    //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
-    //     console.log('_______________________________');
-    // }
-    //
-    // console.log('ok2');
+    //On stocke la grille
+    for(var x = 0; x < this.size; x++){
+
+        console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+        console.log('_______________________________');
+    }
+
+    console.log('ok2');
     stepPrint.push(this.tab);
     // On ajoute les voisins vide à notre liste.
     //Les voisins directs
@@ -147,14 +147,15 @@ grille.prototype.percolateProp = function(){
       }
     }
   }
-  //
-  // //return la liste
-  // for(var x = 0; x < this.size; x++){
-  //
-  //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
-  //     console.log('_______________________________');
-  // }
-  // console.log('ok3');
+
+  //return la liste
+  for(var x = 0; x < this.size; x++){
+
+      console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+      console.log('_______________________________');
+  }
+  console.log('ok3');
+  console.log(stepPrint);
   return stepPrint;
 }
 
