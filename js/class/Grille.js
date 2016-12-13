@@ -44,60 +44,118 @@ grille.prototype.getNeighbourhood = function(x, y){
 
 // Version propagation NB: plus tard, utiliser une proba de bruler ou non.
 grille.prototype.percolateProp = function(){
-    var array = [];
-    // On stocke tous les arbres
-    for(var i = 0; i < this.size; i++){
-        for(var j = 0; j < this.size; j++){
-            if(this.tab[i][j].exist){
-                array.push(this.tab[i][j]);
-            }
-        }
-    }
+  //Recherche des arbres et stockage dans la liste
+  var listTree = [];
+  for(var i = 0; i < this.size; i++){
+      for(var j = 0; j < this.size; j++){
+          if(this.tab[i][j].exist){
+              listTree.push(this.tab[i][j]);
+          }
+      }
+  }
 
-    var cible = [];
-    // Le tableau qui contient l'arbre ciblé, auquel on ajoutera ses voisins
-    var rand = Math.floor(Math.random() * array.length);
-    cible.push(array[rand]);
-    var stepPrint = [];
+  //Déclaration d'une liste qui va contenir les arbres qui vont bruler
+  var burnTree = [];
+  var randTree = Math.floor(Math.random() * listTree.length);
+
+  //Choix d'un arbre parmi ceux existant
+  burnTree.push(listTree[randTree]);
+
+  //Stockage initial
+  var stepPrint = [];
+  // for(var x = 0; x < this.size; x++){
+  //
+  //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+  //     console.log('_______________________________');
+  // }
+  // console.log('ok1');
+  stepPrint.push(this.tab);
+
+  while(burnTree.length > 0){
+    var i = burnTree[(burnTree.length-1)].x;  // On stocke les coordonnées.
+    var j = burnTree[(burnTree.length-1)].y;
+    //On retire l'arbre courant, et on le fait bruler
+    burnTree.pop();
+    this.tab[i][j].visite = 1;
+    this.tab[i][j].val = 2;
+    // //On stocke la grille
+    // for(var x = 0; x < this.size; x++){
+    //
+    //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+    //     console.log('_______________________________');
+    // }
+    //
+    // console.log('ok2');
     stepPrint.push(this.tab);
-    while(cible.length > 0){
-        var i = cible[(cible.length-1)].x;  // On stocke les coordonnées.
-        var j = cible[(cible.length-1)].y;
-        cible.pop();                // On supprime de la liste.
-        this.tab[i][j].visite = 1; // a été visité
-        this.tab[i][j].val= 2; // a été brulé;
-        stepPrint.push(this.tab);
-        
-        // On ajoute les voisins vide à notre liste.
-        //Les voisins directs
-        if(i>0 && this.tab[i-1][j].exist == 1 && this.tab[i-1][j].visite == 0){
-            cible.push(this.tab[i-1][j]);
-        }
-        if(i < this.size-1 && this.tab[i+1][j].exist == 1 && this.tab[i+1][j].visite == 0){
-            cible.push(this.tab[i+1][j]);
-        }
-        if(j > 0 && this.tab[i][j-1].exist == 1 && this.tab[i][j-1].visite == 0){
-            cible.push(this.tab[i][j-1]);
-        }
-        if(j < this.size-1 && this.tab[i][j+1].exist == 1 && this.tab[i][j+1].visite == 0){
-            cible.push(this.tab[i][j+1]);
-        }
+    // On ajoute les voisins vide à notre liste.
+    //Les voisins directs
 
-        //Les voisins diagonaux
-        if(i>0 && j>0 && this.tab[i-1][j-1].exist == 1 && this.tab[i-1][j-1].visite == 0){
-            cible.push(this.tab[i-1][j-1]);
-        }
-        if(i>0 && j<this.size-1 && this.tab[i-1][j+1].exist == 1 && this.tab[i-1][j+1].visite == 0){
-            cible.push(this.tab[i-1][j+1]);
-        }
-        if(j > 0 && i<this.size-1 && this.tab[i+1][j-1].exist == 1 && this.tab[i+1][j-1].visite == 0){
-            cible.push(this.tab[i+1][j-1]);
-        }
-        if(j < this.size-1 && i<this.size-1 && this.tab[i+1][j+1].exist == 1 && this.tab[i+1][j+1].visite == 0){
-            cible.push(this.tab[i+1][j+1]);
-        }
+    if(i>0){
+      //voisin du haut
+      if(this.tab[i-1][j].exist == 1 && this.tab[i-1][j].visite == 0){
+          burnTree.push(this.tab[i-1][j]);
+      }
     }
-    return stepPrint;
+
+    if(i < this.size-1){
+      //voisin du dessous
+      if(this.tab[i+1][j].exist == 1 && this.tab[i+1][j].visite == 0){
+          burnTree.push(this.tab[i+1][j]);
+      }
+    }
+
+    if(j > 0){
+      //voisin de gauche
+      if(this.tab[i][j-1].exist == 1 && this.tab[i][j-1].visite == 0){
+          burnTree.push(this.tab[i][j-1]);
+      }
+    }
+
+    if(j < this.size-1){
+      //voisin de droite
+      if(this.tab[i][j+1].exist == 1 && this.tab[i][j+1].visite == 0){
+          burnTree.push(this.tab[i][j+1]);
+      }
+    }
+
+    //Les voisins diagonaux
+    if(i>0 && j>0){
+      //voisin haut gauche
+      if(this.tab[i-1][j-1].exist == 1 && this.tab[i-1][j-1].visite == 0){
+          burnTree.push(this.tab[i-1][j-1]);
+      }
+    }
+
+    if(i>0 && j<this.size-1){
+      //voisin haut droit
+      if(this.tab[i-1][j+1].exist == 1 && this.tab[i-1][j+1].visite == 0){
+          burnTree.push(this.tab[i-1][j+1]);
+      }
+    }
+
+    if(j > 0 && i<this.size-1){
+      //voisin bas gauche
+      if(this.tab[i+1][j-1].exist == 1 && this.tab[i+1][j-1].visite == 0){
+          burnTree.push(this.tab[i+1][j-1]);
+      }
+    }
+
+    if(j < this.size-1 && i<this.size-1){
+      //voisin bas droit
+      if(this.tab[i+1][j+1].exist == 1 && this.tab[i+1][j+1].visite == 0){
+          burnTree.push(this.tab[i+1][j+1]);
+      }
+    }
+  }
+  //
+  // //return la liste
+  // for(var x = 0; x < this.size; x++){
+  //
+  //     console.log(this.tab[x][0].val, ' | ',this.tab[x][1].val, ' | ',this.tab[x][2].val, ' | ',this.tab[x][3].val, ' | ',this.tab[x][4].val);
+  //     console.log('_______________________________');
+  // }
+  // console.log('ok3');
+  return stepPrint;
 }
 
 grille.prototype.PercoDiagRec = function(arbre = null){

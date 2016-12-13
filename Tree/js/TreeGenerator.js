@@ -28,14 +28,13 @@ TreeGenerator.prototype.generate = function() {
         return ((random * (max - min)) + min);
     };
 
-    var size,
-        sizeTrunk, x, z, radius;
-    var sizeGrille = this.g.percolateProp()[0].length;
-    var percolationResult = this.g.percolateProp()[0];
+    var size, sizeTrunk, x, z, radius;
+    var sizeGrille = this.g[0].length;
+    var percolationResult = this.g[0];
     console.log(percolationResult);
     for (let i=0; i < sizeGrille; i++){
         for (let j=0; j < sizeGrille; j++){
-          console.log("state", percolationResult[i][j].val);
+          console.log(percolationResult[i][j]);
           if(percolationResult[i][j].exist){
             size = (this.minSizeBranch+this.maxSizeBranch)/2;
             sizeTrunk = this.maxSizeTrunk;

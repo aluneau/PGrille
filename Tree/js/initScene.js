@@ -1,4 +1,4 @@
-var g = new grille(20, 50);
+var g = new grille(5, 80);
 
 // The babylon engine
 var engine;
@@ -89,21 +89,20 @@ var initScene = function() {
     ground.receiveShadows = true;
 
 
-    var tg = new TreeGenerator(scene, shadowGenerator, g);
-    initGui(tg);
+    var tg = new TreeGenerator(scene, shadowGenerator, g.percolateProp());
+    tg.generate();
+    //
+    // initGui(tg);
+    //     setInterval(function(){
+    //       tg.step++;
+    //       tg.step = tg.step%2;
+    //       tg.clean();
+    //       tg.generate();
+    //     }, 5000);
 };
 
 var initGui = function(tg) {
 
-    var gui = new dat.GUI();
-    gui.add(tg, 'State', 0, 2).name("State").step(1).onChange(function(){
-      tg.generate();
-    });
-    gui.add(tg, 'treeNumber', 1, 200).name("Number of trees").step(1).onChange(function(){
-        tg.generate();
-    });
-    setInterval(function(){
-      tg.step++;
-      tg.generate();
-    }, 2000);
+//    var gui = new dat.GUI();
+
 };
