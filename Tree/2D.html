@@ -40,6 +40,8 @@ setInterval(function(){
 	if(affichageIteration < steps.length){
 		afterLoad(steps[affichageIteration]);
 		affichageIteration++;
+	}else{
+		affichageIteration=0;
 	}
 }, 100);
 
