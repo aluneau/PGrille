@@ -27,6 +27,13 @@ TreeGenerator.prototype.generate = function() {
         var random = Math.random();
         return ((random * (max - min)) + min);
     };
+    var randomNumber2 = function (min, max) {
+        if (min == max) {
+            return (min);
+        }
+        var random = 0.8;
+        return ((random * (max - min)) + min);
+    };
 
     var size, sizeTrunk, x, z, radius;
     //console.log(this.g);
@@ -39,7 +46,7 @@ TreeGenerator.prototype.generate = function() {
           if(percolationResult[i][j]>0){
             size = (this.minSizeBranch+this.maxSizeBranch)/2;
             sizeTrunk = this.maxSizeTrunk;
-            radius = randomNumber(this.minRadius,this.maxRadius);
+            radius = randomNumber2(this.minRadius,this.maxRadius);
             xTree=((i)*40)-300;
             yTree = ((j)*40)-300;
             //var tree = new Tree(size, sizeTrunk, radius, scene, percolationResult[i][j].val ,this.sd);
