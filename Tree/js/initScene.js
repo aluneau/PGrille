@@ -68,7 +68,7 @@ var initScene = function() {
     scene.fogColor = new BABYLON.Color3(0.8,0.83,0.8);
 
     // Camera attached to the canvas
-    var camera = new BABYLON.ArcRotateCamera("Camera", 0.67,1.2, 150, BABYLON.Vector3.Zero(), scene);
+    var camera = new BABYLON.ArcRotateCamera("Camera", 0.67,1.2, 450, BABYLON.Vector3.Zero(), scene);
     camera.attachControl(canvas);
 
     // Hemispheric light to light the scene
