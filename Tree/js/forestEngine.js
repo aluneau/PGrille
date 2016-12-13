@@ -1,4 +1,4 @@
-var limit = 100;
+var limit = 50;
 var iteration = 0;
 
 var affichageIteration=0;
