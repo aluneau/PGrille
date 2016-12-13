@@ -1,4 +1,4 @@
-var g = new grille(5, 80);
+var forestSteps = createSteps(150);
 
 // The babylon engine
 var engine;
@@ -89,16 +89,21 @@ var initScene = function() {
     ground.receiveShadows = true;
 
 
-    var tg = new TreeGenerator(scene, shadowGenerator, g.percolateProp());
+    var tg = new TreeGenerator(scene, shadowGenerator, forestSteps);
     tg.generate();
     //
     // initGui(tg);
-    //     setInterval(function(){
-    //       tg.step++;
-    //       tg.step = tg.step%2;
-    //       tg.clean();
-    //       tg.generate();
-    //     }, 5000);
+
+
+    setInterval(function(){
+      if(tg.step < limit){
+        tg.step++;
+      }else{
+        tg.step=0;
+      }
+      tg.clean();
+      tg.generate();
+    }, 500);
 };
 
 var initGui = function(tg) {

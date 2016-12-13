@@ -29,19 +29,21 @@ TreeGenerator.prototype.generate = function() {
     };
 
     var size, sizeTrunk, x, z, radius;
-    var sizeGrille = this.g[0].length;
-    var percolationResult = this.g[0];
-    console.log(percolationResult);
+    //console.log(this.g);
+    var sizeGrille = this.g[this.step].t.length;
+    var percolationResult = this.g[this.step].t;
+    //console.log(percolationResult);
     for (let i=0; i < sizeGrille; i++){
         for (let j=0; j < sizeGrille; j++){
-          console.log(percolationResult[i][j]);
-          if(percolationResult[i][j].exist){
+          //console.log(percolationResult[i][j]);
+          if(percolationResult[i][j]>0){
             size = (this.minSizeBranch+this.maxSizeBranch)/2;
             sizeTrunk = this.maxSizeTrunk;
             radius = randomNumber(this.minRadius,this.maxRadius);
-            xTree=((percolationResult[i][j].x/sizeGrille)*400)-150;
-            yTree = ((percolationResult[i][j].y/sizeGrille)*400)-150;
-            var tree = new Tree(size, sizeTrunk, radius, scene, percolationResult[i][j].val ,this.sd);
+            xTree=((i)*40)-300;
+            yTree = ((j)*40)-300;
+            //var tree = new Tree(size, sizeTrunk, radius, scene, percolationResult[i][j].val ,this.sd);
+            var tree = new Tree(size, sizeTrunk, radius, scene, percolationResult[i][j],this.sd);
             tree.position.x = xTree;
             tree.position.z = yTree;
             this._trees.push(tree);

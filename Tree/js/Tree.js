@@ -1,3 +1,7 @@
+var green = randomColor({hue: 'green', luminosity: 'darl', format: 'rgbArray'});
+var orange = randomColor({hue: 'orange',luminosity: 'dark', format: 'rgbArray'});
+var red = randomColor({hue: 'red', luminosity: 'dark', format: 'rgbArray'});
+
 Tree = function(sizeBranch, sizeTrunk, radius, scene, state, sd) {
     // Call the super class BABYLON.Mesh
     BABYLON.Mesh.call(this, "tree", scene);
@@ -6,14 +10,14 @@ Tree = function(sizeBranch, sizeTrunk, radius, scene, state, sd) {
 
 
     if(state == 1){
-      var branchColor = randomColor({hue: 'green', luminosity: 'darl', format: 'rgbArray'});
-      var trunkColor = randomColor({hue: 'orange',luminosity: 'dark', format: 'rgbArray'});
-    }else if(state == 2){
+      var branchColor = green;
+      var trunkColor = orange;
+    }else if(state == 3){
       var branchColor = "#ffffff";// randomColor({hue: 'black', luminosity: 'dark', format: 'rgbArray'});
       var trunkColor = "#ffffff";//randomColor({hue: 'black',luminosity: 'dark', format: 'rgbArray'});
-    }else if(state == 0){
-      var branchColor = randomColor({hue: 'red', luminosity: 'dark', format: 'rgbArray'});
-      var trunkColor = randomColor({hue: 'red',luminosity: 'dark', format: 'rgbArray'});
+    }else if(state == 2){
+      var branchColor = red;
+      var trunkColor = red;
     }
     this.material = new BABYLON.StandardMaterial("mat", scene);
     this.material.diffuseColor = BABYLON.Color3.FromInts(branchColor[0],branchColor[1],branchColor[2]);
@@ -89,12 +93,33 @@ Tree.prototype._init = function(sizeBranch) {
         return ((random * (max - min)) + min);
     };
 
+    var numRX = function(min,max){
+      if(min==max){
+        return (min);
+      }
+      var random = 0.6788;
+      return ((random * (max-min)) + min);
+    }
+    var numRY = function(min,max){
+      if(min==max){
+        return (min);
+      }
+      var random = 0.483;
+      return ((random * (max-min)) + min);
+    }
+    var numRZ = function(min,max){
+      if(min==max){
+        return (min);
+      }
+      var random = 0.89;
+      return ((random * (max-min)) + min);
+    }
     var that = this;
     map.forEach(function(array) {
         var index, min = -sizeBranch/10, max = sizeBranch/10;
-        var rx = randomNumber(min,max);
-        var ry = randomNumber(min,max);
-        var rz = randomNumber(min,max);
+        var rx = numRX(min,max);
+        var ry = numRY(min,max);
+        var rz = numRZ(min,max);
 
         for (index = 1; index<array.length; index++) {
             var i = array[index];
