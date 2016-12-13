@@ -1,0 +1,45 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500">
+			Your browser doesn't support HTML5 Canvas.
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript" src="js/forestEngine.js"></script>
+<script type="text/javascript">
+
+var limit = 100;
+var iteration = 0;
+
+var affichageIteration=0;
+
+var steps = [];
+x_Grille=50;
+y_Grille=50;
+var forest = new_forest();
+init_forest(forest);
+
+
+function afterLoad(forest) {
+    var canvas = document.getElementById('canvas');
+    var c = canvas.getContext('2d');
+    for(var i = 0; i < forest.X; i++) {
+        for(var j = 0; j < forest.Y; j++) {
+            c.fillStyle = forest.c[forest.t[i][j]];
+            c.fillRect(10*j, 10*i, 10*j+9, 10*i+9);
+        }
+    }
+}
+
+steps = createSteps(100);
+
+setInterval(function(){
+	if(affichageIteration < steps.length){
+		afterLoad(steps[affichageIteration]);
+		affichageIteration++;
+	}
+}, 100);
+
+</script>

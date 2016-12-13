@@ -4,13 +4,14 @@ var iteration = 0;
 var affichageIteration=0;
 
 var steps = [];
-
-function new_forest()
+var x_Grille = 15;
+var y_Grille = 15;
+function new_forest(x,y)
 {
 	var forest = {
 			toto: 0,
-	    X: 15,
-	    Y: 15,
+	    X: x_Grille,
+	    Y: y_Grille,
 	    propTree: 0.5,
 	    propTree2: 0,
 	    propBurn: 0.0025,
