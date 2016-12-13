@@ -16,7 +16,7 @@ function new_forest(x,y)
 	    propTree2: 0,
 	    propBurn: 0.0025,
 	    t: [],
-	    c: ['rgb(255,255,255)', 'rgb(0,255,0)', 'rgb(255,0,0)', 'rgb(0,0,255)']
+	    c: ['rgb(255,255,255)', 'rgb(0,255,0)', 'rgb(255,0,0)', 	'rgb(255,165,0)']
 	};
 
 	for(var i = 0; i < forest.Y; i++) {
