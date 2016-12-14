@@ -12,11 +12,21 @@ body {
 .titre {
   text-align: center;
 }
+.Simulation {
+  height: 300px;
+  width: 575px;
+}
 .titre h1{
   font-size: 90px !important;
   font-family: daddy_in_space_demoregular;
 }
-
+.sous-titre{
+  text-align: center;
+  font-family: daddy_in_space_demoregular;
+}
+.middle{
+  margin-top: +50px;
+}
 .footer {
   position: absolute;
   bottom: 0;
